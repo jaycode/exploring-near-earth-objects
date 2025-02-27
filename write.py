@@ -25,7 +25,7 @@ def write_to_csv(results, filename):
     :param filename: A Path-like object pointing to where the data should be saved.
     """
     fieldnames = ('datetime_utc', 'distance_au', 'velocity_km_s', 'designation', 'name', 'diameter_km', 'potentially_hazardous')
-    # TODO: Write the results to a CSV file, following the specification in the instructions.
+    # COMPLETED: Write the results to a CSV file, following the specification in the instructions.
 
     with open(filename, 'w', newline='', encoding='utf-8') as outfile:
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
@@ -54,7 +54,7 @@ def write_to_json(results, filename):
     :param results: An iterable of `CloseApproach` objects.
     :param filename: A Path-like object pointing to where the data should be saved.
     """
-    # TODO: Write the results to a JSON file, following the specification in the instructions.
+    # COMPLETED: Write the results to a JSON file, following the specification in the instructions.
     data = []
     for approach in results:
         # Build a dictionary for the approach

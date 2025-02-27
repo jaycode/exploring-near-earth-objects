@@ -38,6 +38,7 @@ class AttributeFilter:
     Concrete subclasses can override the `get` classmethod to provide custom
     behavior to fetch a desired attribute from the given `CloseApproach`.
     """
+
     def __init__(self, op, value):
         """Construct a new `AttributeFilter` from an binary predicate and a reference value.
 
@@ -69,6 +70,7 @@ class AttributeFilter:
         raise UnsupportedCriterionError
 
     def __repr__(self):
+        """Get a representation of this object."""
         return f"{self.__class__.__name__}(op=operator.{self.op.__name__}, value={self.value})"
 
 
@@ -76,33 +78,43 @@ class AttributeFilter:
 
 class DateFilter(AttributeFilter):
     """Filter close approaches on their calendar date (year-month-day)."""
+    
     @classmethod
     def get(cls, approach):
+        """Get approach's date."""
         # approach.time is a datetime; we compare only the date component
         return approach.time.date()  # datetime.date object
 
 class DistanceFilter(AttributeFilter):
     """Filter close approaches on their nominal approach distance."""
+    
     @classmethod
     def get(cls, approach):
+        """Get approach's distance."""
         return approach.distance
 
 class VelocityFilter(AttributeFilter):
     """Filter close approaches on their relative velocity."""
+
     @classmethod
     def get(cls, approach):
+        """Get approach's velocity."""
         return approach.velocity
 
 class DiameterFilter(AttributeFilter):
     """Filter close approaches on the diameter of the associated NEO."""
+
     @classmethod
     def get(cls, approach):
+        """Get approach's neo diameter."""
         return approach.neo.diameter
 
 class HazardousFilter(AttributeFilter):
     """Filter close approaches on whether the NEO is potentially hazardous."""
+
     @classmethod
     def get(cls, approach):
+        """Get approach's neo hazardous."""
         return approach.neo.hazardous
 
 def create_filters(date=None, start_date=None, end_date=None,
@@ -139,7 +151,7 @@ def create_filters(date=None, start_date=None, end_date=None,
     :param hazardous: Whether the NEO of a matching `CloseApproach` is potentially hazardous.
     :return: A collection of filters for use with `query`.
     """
-    # TODO: Decide how you will represent your filters.
+    # COMPLETED: Decide how you will represent your filters.
     filters = []
 
     # 1) Date-based filters
@@ -185,7 +197,7 @@ def limit(iterator, n=None):
     :param n: The maximum number of values to produce.
     :yield: The first (at most) `n` values from the iterator.
     """
-    # TODO: Produce at most `n` values from the given iterator.
+    # COMPLETED: Produce at most `n` values from the given iterator.
     if not n:  # Covers n == 0 or n is None
         # Yield everything
         yield from iterator
