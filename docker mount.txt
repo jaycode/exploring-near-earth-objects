@@ -1,0 +1,7 @@
+To init:
+docker run -it --name py36 -v "/mnt/c/Users/Asus/w:/w" -w /w python:3.6 bash
+
+To run:
+
+1. Start from docker desktop
+2. Run this command in a command prompt: docker start -ai py36
